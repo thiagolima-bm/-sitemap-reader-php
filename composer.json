@@ -1,0 +1,15 @@
+{
+  "name": "snowdogapps/sitemap-reader-php",
+  "version": "0.0.1",
+  "require": {
+    "snowdogapps/dev-test": "*"
+  },
+  "autoload": {
+    "psr-4": {
+      "Snowdog\\SitemapReader\\": "src"
+    },
+    "files": [
+      "src/components.php"
+    ]
+  }
+}
