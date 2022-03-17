@@ -8,6 +8,10 @@ use Snowdog\SitemapReader\Service\SitemapParser;
 
 class ImportSitemapAction
 {
+    private $parser;
+    private $sitemapManager;
+    private $userManager;
+
     public function __construct(
         SitemapParser $parser,
         SitemapManager $sitemapManager,

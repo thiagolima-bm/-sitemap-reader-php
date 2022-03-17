@@ -4,10 +4,22 @@ namespace Snowdog\SitemapReader\Service;
 
 class SitemapParser
 {
+    /**
+     * @var string
+     */
     private $website;
+    /**
+     * @var array
+     */
     private $pages = [];
+    /**
+     * @var array
+     */
     private $errors = [];
 
+    /**
+     * @param string $sitemapUrl
+     */
     public function parse($sitemapUrl = "")
     {
         $content = @file_get_contents($sitemapUrl);
@@ -43,6 +55,13 @@ class SitemapParser
     public function getErrors()
     {
         return $this->errors;
+    }
+
+    public function addError($error = "")
+    {
+        if ($error) {
+            $this->errors[] = $error;
+        }
     }
 }
 

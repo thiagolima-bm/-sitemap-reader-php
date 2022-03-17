@@ -8,6 +8,20 @@ use Snowdog\DevTest\Model\WebsiteManager;
 
 class SitemapManager
 {
+    /**
+     * @var WebsiteManager
+     */
+    private $websiteManager;
+    /**
+     * @var PageManager
+     */
+    private $pageManager;
+
+    /**
+     * SitemapManager constructor.
+     * @param WebsiteManager $websiteManager
+     * @param PageManager $pageManager
+     */
     public function __construct(
         WebsiteManager $websiteManager,
         PageManager $pageManager
@@ -27,10 +41,13 @@ class SitemapManager
             return false;
         }
         $website = $this->getWebsite($parser, $user);
-        if ($website) {
-            foreach ($parser->getPages() as $url) {
-                $this->pageManager->create($website, $url);
-            }
+        if (!$website) {
+            $parser->addError("Invalid website");
+            return false;
+        }
+
+        foreach ($parser->getPages() as $url) {
+            $this->pageManager->create($website, $url);
         }
         return true;
     }
